@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7nx0dxuryau7"]
+
+[ext_resource type="Script" path="res://test_2.gd" id="1_u3nsn"]
+[ext_resource type="Texture2D" uid="uid://dvcrhhx20wm5n" path="res://dvd-logo.png" id="2_8k00l"]
+[ext_resource type="Shader" path="res://textureColor.gdshader" id="2_mvj2q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x8mru"]
+shader = ExtResource("2_mvj2q")
+shader_parameter/color = Color(0.437101, 0.043427, 0.395799, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_206vi"]
+size = Vector2(238, 106)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_u3nsn")
+
+[node name="Icon" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_x8mru")
+texture = ExtResource("2_8k00l")
+
+[node name="Area2D" type="Area2D" parent="Icon"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Icon/Area2D"]
+shape = SubResource("RectangleShape2D_206vi")
+
+[connection signal="input_event" from="Icon/Area2D" to="." method="_on_area_2d_input_event"]
